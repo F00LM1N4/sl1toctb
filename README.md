@@ -1,5 +1,8 @@
 # sl1toctb - convert prusaslicer files to ctb v4 files
 
+**NOTE**: I'm not the original creator of this software, I just forked it because
+using it on my printer I felt the need to fix some minor things and customize it a bit.
+
 sl1toctb allows to convert files created by the prusaslicer 3d slicer into
 chitu's ctb file, version 4, to use with any 3d printer supporting those
 files.
@@ -65,6 +68,11 @@ make install PREFIX=/other/directory/
 ```
 
 ## Credits
+
+[sl1toctb](https://github.com/oelmekki/sl1toctb) All the credit for this 
+piece of software goes to the original creator [oelmekki](https://github.com/oelmekki).
+I just forked it to fix an issue I was having on my printer and to add a better 
+layer exposure transition.
 
 [UVtools](https://github.com/sn4k3/UVtools) has been instrumental to my
 understanding of the ctb file format, some parts of sl1toctb (notably the

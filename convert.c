@@ -920,23 +920,14 @@ write_layers (FILE *file, size_t *index, ctb_t *ctb, const sl1_t *sl1)
 
       if (i < (size_t) sl1->faded_layers)
         {
-          ext.exposure_time = sl1->initial_exposure_time;
+          // Gradually transition from initial_exposure time to exposure_time
+          ext.exposure_time = sl1->initial_exposure_time - i*(sl1->initial_exposure_time - sl1->exposure_time)/sl1->faded_layers;
           headers[i].exposure_time = sl1->initial_exposure_time;
         }
       else
         {
-          if (i <= (size_t) sl1->faded_layers + 10)
-            {
-              ext.exposure_time = sl1->initial_exposure_time - ((i+1 - sl1->faded_layers) * sl1->exposure_time);
-              headers[i].exposure_time = headers[i].exposure_time;
-              ext.lift_height = headers[i].exposure_time;
-            }
-          else
-            {
-              ext.exposure_time = sl1->exposure_time;
-              headers[i].exposure_time = sl1->exposure_time;
-              ext.lift_height = sl1->exposure_time;
-            }
+          ext.exposure_time = sl1->exposure_time;
+          headers[i].exposure_time = sl1->exposure_time;
         }
 
       fseek (file, ext_pos, SEEK_SET);
